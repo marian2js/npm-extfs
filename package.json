@@ -1,7 +1,7 @@
 {
 	"name": "extfs",
 	"description": "Extension for Node.js fs module.",
-	"version": "0.0.1",
+	"version": "0.0.4",
 	"author": "Mariano Pardo (Codexar) <marianomdq1@gmail.com>",
 	"dependencies": {
 		"underscore": ">= 1.4 < 2"

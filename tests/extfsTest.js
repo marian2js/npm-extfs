@@ -4,13 +4,16 @@ var fs = require('../extfs');
 describe('extfs', function () {
 	it('should return all directories', function (done) {
 		fs.getDirs('../', function (err, dirs) {
-			expect(dirs).to.be.a('array');
+			expect(dirs).to.be.an('array');
+			expect(dirs.length > 0).to.be.ok();
 			done();
 		});
 	});
 
 	it('should return all directories sync', function (done) {
-		expect(fs.getDirsSync('../')).to.be.a('array');
+		var dirs = fs.getDirsSync('../');
+		expect(dirs).to.be.an('array');
+		expect(dirs.length > 0).to.be.ok();
 		done();
 	});
 

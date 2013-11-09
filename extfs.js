@@ -1,15 +1,17 @@
 var fs = require('fs');
+var path = require('path');
 var _ = require('underscore');
+
 var extfs = {};
 
 /**
  * Get all directories
  *
- * @param path
+ * @param searchPath
  * @param cb
  */
-extfs.getDirs = function (path, cb) {
-	fs.readdir(path, function (err, files) {
+extfs.getDirs = function (searchPath, cb) {
+	fs.readdir(searchPath, function (err, files) {
 		if (err) {
 			return cb(err);
 		}
@@ -17,7 +19,7 @@ extfs.getDirs = function (path, cb) {
 		files.forEach(function (item) {
 			var stat;
 			try {
-				stat = fs.statSync(item);
+				stat = fs.statSync(path.join(searchPath, item));
 			}
 			catch (e) { }
 			if (stat && stat.isDirectory()) {
@@ -31,16 +33,16 @@ extfs.getDirs = function (path, cb) {
 /**
  * Get all directories sync
  *
- * @param path
+ * @param searchPath
  * @returns {Array}
  */
-extfs.getDirsSync = function (path) {
-	var files = fs.readdirSync(path);
+extfs.getDirsSync = function (searchPath) {
+	var files = fs.readdirSync(searchPath);
 	var arrDirs = [];
 	files.forEach(function (item) {
 		var stat;
 		try {
-			stat = fs.statSync(item);
+			stat = fs.statSync(path.join(searchPath, item));
 		}
 		catch (e) { }
 		if (stat && stat.isDirectory()) {
