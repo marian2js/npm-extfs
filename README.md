@@ -1,14 +1,14 @@
 Extension for Node.js fs module
 =========
-
+ 
 ##Table of Contents:
 
-	- [getDirs(path, cb)](#getDirs)
-	- [getDirsSync(path)](#getDirsSync)
-	- [isEmpty(path, cb)](#isEmpty)
-	- [isEmptySync(path)](#isEmptySync)
+- [getDirs(path, cb)](#getDirs)
+- [getDirsSync(path)](#getDirsSync)
+- [isEmpty(path, cb)](#isEmpty)
+- [isEmptySync(path)](#isEmptySync)
 
-# <a name="getDirs"></a>getDirs(path, cb)
+## <a name="getDirs"></a>getDirs(path, cb)
 
 Get all directories from a path
 
@@ -25,7 +25,7 @@ fs.getDirs('/home/myFolder', function (err, dirs) {
 });
  ```
 
-# <a name="getDirsSync"></a>getDirsSync(path)
+## <a name="getDirsSync"></a>getDirsSync(path)
 
 (Synchronously) Get all directories from a path
 
@@ -38,7 +38,7 @@ var dirs = fs.getDirsSync('/home/myFolder');
 console.log(dirs); // Array of directories
  ```
 
-# <a name="isEmpty"></a>isEmpty(path, cb)
+## <a name="isEmpty"></a>isEmpty(path, cb)
 
 Check if a file or directory is empty.
 A file is empty if not exists or not have any content.
@@ -54,7 +54,7 @@ fs.isEmpty('/home/myFolder', function (empty) {
 });
  ```
 
-# <a name="isEmptySync"></a>isEmptySync(path)
+## <a name="isEmptySync"></a>isEmptySync(path)
 
 (Synchronously) Check if a file or directory is empty.
 A file is empty if not exists or not have any content.
