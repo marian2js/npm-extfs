@@ -89,7 +89,12 @@ extfs.isEmpty = function (path, cb) {
  * @param cb
  */
 extfs.isEmptySync = function (path) {
-	var stat = fs.statSync(path);
+	try {
+		var stat = fs.statSync(path);
+	}
+	catch (e) {
+		return true;
+	}
 	if (stat.isDirectory()) {
 		var items = fs.readdirSync(path);
 		return !items || !items.length;

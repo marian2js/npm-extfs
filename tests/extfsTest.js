@@ -44,6 +44,7 @@ describe('extfs', function () {
 			expect(empty).to.be(false);
 			fs.isEmpty(emptyDir, function (empty) {
 				expect(empty).to.be(true);
+				done();
 			})
 		});
 	});
