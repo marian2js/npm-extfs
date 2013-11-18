@@ -52,4 +52,52 @@ extfs.getDirsSync = function (searchPath) {
 	return arrDirs;
 };
 
+/**
+ * Check if a file or directory is empty
+ *
+ * @param path
+ * @param cb
+ */
+extfs.isEmpty = function (path, cb) {
+	fs.stat(path, function (err, stat) {
+		if (err) {
+			return cb(true);
+		}
+		if (stat.isDirectory()) {
+			fs.readdir(path, function (err, items) {
+				if (err) {
+					return cb(true);
+				}
+				cb(!items || !items.length);
+			});
+		}
+		else {
+			fs.readFile(path, function (err, data) {
+				if (err) {
+					cb(true);
+				}
+				cb(!data || !data.length)
+			});
+		}
+	});
+};
+
+/**
+ * Check if a file or directory is empty Sync
+ *
+ * @param path
+ * @param cb
+ */
+extfs.isEmptySync = function (path) {
+	var stat = fs.statSync(path);
+	if (stat.isDirectory()) {
+		var items = fs.readdirSync(path);
+		return !items || !items.length;
+	}
+	else {
+		var file = fs.readFileSync(path);
+		return !file || !file.length;
+	}
+};
+
 module.exports = _.extend(fs, extfs);
