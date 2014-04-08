@@ -1,29 +1,28 @@
 {
-	"name": "extfs",
-	"description": "Extension for Node.js fs module.",
-	"version": "0.0.6",
-	"author": "Mariano Pardo (Codexar) <marianomdq1@gmail.com>",
-	"dependencies": {
-		"underscore": ">= 1.4 < 2"
-	},
-	"devDependencies": {
-		"mocha": ">= 1.13 < 2",
-		"expect.js": "latest"
-	},
-	"scripts": {
-		"prepublish": "npm prune",
-		"test": "mocha ./tests/extfsTest.js"
-	},
-	"keywords": [
-		"fs",
-		"file",
-		"system",
-		"utils",
-		"tools"
-	],
-	"main": "extfs",
-	"repository": "git://github.com/codexar/npm-extfs",
-	"engines": {
-		"node": ">= 0.8.0"
-	}
+  "name": "extfs",
+  "description": "Extension of fs module.",
+  "version": "0.0.7",
+  "author": "Mariano Pardo (Codexar) <marianomdq1@gmail.com>",
+  "dependencies": {
+    "underscore": ">= 1.4 < 2"
+  },
+  "devDependencies": {
+    "expect.js": "latest"
+  },
+  "scripts": {
+    "prepublish": "npm prune",
+    "test": "mocha ./tests/extfsTest.js"
+  },
+  "keywords": [
+    "fs",
+    "file",
+    "system",
+    "utils",
+    "tools"
+  ],
+  "main": "extfs",
+  "repository": "git://github.com/codexar/npm-extfs",
+  "engines": {
+    "node": ">= 0.8.0"
+  }
 }
