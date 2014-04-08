@@ -7,6 +7,8 @@ Extension for Node.js fs module
 - [getDirsSync(path)](#getDirsSync)
 - [isEmpty(path, cb)](#isEmpty)
 - [isEmptySync(path)](#isEmptySync)
+- [remove(path, cb)](#remove)
+- [removeSync(path)](#removeSync)
 
 ## <a name="getDirs"></a>getDirs(path, cb)
 
@@ -68,3 +70,37 @@ var fs = require('extfs');
 var empty = fs.isEmptySync('/home/myFolder');
 console.log(empty);
  ```
+
+## <a name="remove"></a>remove(path, cb)
+
+Remove a path or array of paths.
+A path can be a file or directory.
+If a directory is not empty, also removes its content.
+
+Example:
+
+```javascript
+var fs = require('extfs');
+
+fs.remove('/home/folder');
+fs.remove([ '/home/folder1', '/hole/folder2', '/home/folder3' ]);
+ ```
+
+## <a name="removeSync"></a>removeSync(path, cb)
+
+(Synchronously) Remove a path or array of paths.
+A path can be a file or directory.
+If a directory is not empty, also removes its content.
+
+Example:
+
+```javascript
+var fs = require('extfs');
+
+fs.removeSync('/home/folder', function (err) {
+  console.log('Folder removed');
+});
+fs.remove([ '/home/folder1', '/hole/folder2', '/home/folder3' ], function (err) {
+  console.log('Folders removed');
+});
+```
