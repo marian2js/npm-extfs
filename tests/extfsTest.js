@@ -59,7 +59,67 @@ describe('extfs', function () {
 		expect(fs.isEmptySync(emptyDir)).to.be(true);
 	});
 
-	it('should extends to fs', function () {
-		expect(fs.readdir).to.be.a(Function);
-	});
+  describe('remove directories', function () {
+    var tmpPath = path.join(rootPath, 'tmp');
+    var folders = [ 'folder1', 'folder2', 'folder3' ];
+    var files = [ '1.txt', '2.txt', '3.txt' ];
+    folders = folders.map(function (folder) {
+      return path.join(tmpPath, folder);
+    });
+
+    /**
+     * Create 3 folders with 3 files each
+     */
+    beforeEach(function () {
+      if (!fs.existsSync(tmpPath)) {
+        fs.mkdirSync(tmpPath, '0755');
+      }
+      folders.forEach(function (folder) {
+        if (!fs.existsSync(folder)) {
+          fs.mkdirSync(folder, '0755');
+        }
+        files.forEach(function (file) {
+          fs.writeFile(path.join(folder, file), 'file content');
+        });
+      });
+    });
+
+    it('should remove a non empty directory', function (done) {
+      fs.remove(tmpPath, function (err) {
+        expect(err).to.be(null);
+        expect(fs.existsSync(tmpPath)).to.be(false);
+        done();
+      });
+    });
+
+    it('should remove a non empty directory synchronously', function () {
+      fs.removeSync(tmpPath);
+      expect(fs.existsSync(tmpPath)).to.be(false);
+    });
+
+    it('should remove an array of directories', function (done) {
+      fs.remove(folders, function (err) {
+        expect(err).to.be(null);
+        expect(fs.existsSync(folders[0])).to.be(false);
+        expect(fs.existsSync(folders[1])).to.be(false);
+        expect(fs.existsSync(folders[2])).to.be(false);
+        expect(fs.existsSync(tmpPath)).to.be(true);
+        done();
+      });
+    });
+
+    it('should remove an array of directories synchronously', function () {
+      fs.removeSync(folders);
+      expect(fs.existsSync(folders[0])).to.be(false);
+      expect(fs.existsSync(folders[1])).to.be(false);
+      expect(fs.existsSync(folders[2])).to.be(false);
+      expect(fs.existsSync(tmpPath)).to.be(true);
+    });
+
+  });
+
+  it('should extends to fs', function () {
+    expect(fs.readdir).to.be.a(Function);
+  });
+
 });
