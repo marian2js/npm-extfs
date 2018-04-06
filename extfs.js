@@ -71,7 +71,7 @@ extfs.isEmpty = function (searchPath, cb) {
     } else {
       fs.readFile(searchPath, function (err, data) {
         if (err) {
-          cb(true);
+          return cb(true);
         }
         cb(!data || !data.length)
       });
